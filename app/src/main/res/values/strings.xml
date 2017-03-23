@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">GoogleMaps</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="style_json">
+  [
+  {
+    \"featureType\": \"poi.school\",
+    \"elementType\": \"geometry.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#b6b390\"
+      }
+    ]
+  },
+  {
+    \"featureType\": \"poi.sports_complex\",
+    \"elementType\": \"geometry.fill\",
+    \"stylers\": [
+      {
+        \"color\": \"#55a327\"
+      }
+    ]
+  }
+]
+  </string>
+
+</resources>
