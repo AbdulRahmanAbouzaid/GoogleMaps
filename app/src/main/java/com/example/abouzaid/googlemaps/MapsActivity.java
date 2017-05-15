@@ -104,7 +104,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
         autocompleteFragment.setOnPlaceSelectedListener(this);
 
-
             mGoogleApiClient = new GoogleApiClient
                     .Builder(this)
                     .addApi(Places.GEO_DATA_API)
@@ -112,25 +111,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .enableAutoManage(this, this)
                     .build();
 
-        AddPlaceRequest place =
-                new AddPlaceRequest(
-                        "suez canal university", // Name
-                        new LatLng(30.623109, 32.2729409), // Latitude and longitude
-                        "W Esplanade, Manly NSW 2095", // Address
-                        Collections.singletonList(Place.TYPE_SCHOOL), // Place types
-                        "+61 1800 199 742", // Phone number
-                        Uri.parse("http://www.manlysealifesanctuary.com.au/") // Website
-                );
-
-        Places.GeoDataApi.addPlace(mGoogleApiClient, place)
-                .setResultCallback(new ResultCallback<PlaceBuffer>() {
-                    @Override
-                    public void onResult(PlaceBuffer places) {
-                        Log.i(TAG, "Place add result: " + places.getStatus().toString());
-                        Log.i(TAG, "Added place: " + places.get(0).getName().toString());
-                        places.release();
-                    }
-                });
+        // Add a custom place (Not working yet)
+//        AddPlaceRequest place =
+//                new AddPlaceRequest(
+//                        "suez canal university", // Name
+//                        new LatLng(30.623109, 32.2729409), // Latitude and longitude
+//                        "W Esplanade, Manly NSW 2095", // Address
+//                        Collections.singletonList(Place.TYPE_SCHOOL), // Place types
+//                        "+61 1800 199 742", // Phone number
+//                        Uri.parse("http://www.manlysealifesanctuary.com.au/") // Website
+//                );
+//
+//        Places.GeoDataApi.addPlace(mGoogleApiClient, place)
+//                .setResultCallback(new ResultCallback<PlaceBuffer>() {
+//                    @Override
+//                    public void onResult(PlaceBuffer places) {
+//                        Log.i(TAG, "Place add result: " + places.getStatus().toString());
+//                        Log.i(TAG, "Added place: " + places.get(0).getName().toString());
+//                        places.release();
+//                    }
+//                });
 
 
     }
@@ -167,6 +167,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mark.setSnippet("suez canal university");
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scu,14));
 
+        // what happening while moving camera
         mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
             @Override
             public void onCameraMove() {
@@ -181,7 +182,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    /* autocomplete Search Bar --> Work on Selected Place */
+    /* autocomplete Search Bar --> Work on Selected Place
+    * get the place you search for and move the camera to it
+    * */
         @Override
         public void onPlaceSelected(Place place) {
             // TODO: Get info about the selected place.
